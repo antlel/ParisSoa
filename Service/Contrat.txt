@@ -1,0 +1,22 @@
+Dans les requêtes POST (créer) et PUT (modifier), mettre des objets JSON dans la requête derrière la clé "Payload"
+Dans les responses GET, le resultat est derrière la clé "Payload" sous forme de JSON, qui contient une entité ou un tableau d'entités
+
+LoginService
+    GET /login/{username}/{password} : LogUser(username, password)
+
+RegisterService
+    POST /register/ : RegisterUser(user)
+
+MatchService
+    GET /match/ : GetAllMatch()
+    POST /match/ : CreateMatch(match)
+    GET /match/{id} : GetMatch(id)
+    PUT /match/{id} : Editmatch(match)
+    DELETE /match/{id} : DeleteMatch(id)
+
+GambleService
+    POST /gamble/ : CreateGamble(match)
+
+RankingService
+    GET /ranking/ : GetAllRanking()
+    GET /ranking/{matchId} : GetAllMatchRanking(matchId)
