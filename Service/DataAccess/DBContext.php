@@ -51,7 +51,7 @@ class DBContext
 
         try {
             $statementHandler =  $this->dbo->prepare($sqlRequest);
-            $statementHandler->execute($args)
+            $statementHandler->execute($args);
 
         } catch (PDOException $e) {
             $this->dbo->rollBack();
@@ -68,7 +68,7 @@ class DBContext
         $result = null;
         try {
             $statementHandler =  $this->dbo->prepare($sqlRequest);
-            $statementHandler->execute($args)
+            $statementHandler->execute($args);
 
             $result = $statementHandler->fetch(PDO::FETCH_ASSOC);
 
@@ -85,7 +85,7 @@ class DBContext
         $result = null;
         try {
             $statementHandler =  $this->dbo->prepare($sqlRequest);
-            $statementHandler->execute($args)
+            $statementHandler->execute($args);
 
             $result = $statementHandler->fetchAll(PDO::FETCH_ASSOC);
 
