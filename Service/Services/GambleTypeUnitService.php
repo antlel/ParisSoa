@@ -13,17 +13,17 @@ use Service\DataAccess\DBContext;
 
 class GambleTypeUnitService implements IUnitService
 {
-    const READ_ALL_GAMBLE_TYPE = "SELECT * FROM gambletype";
-    const CREATE_GAMBLE_TYPE = "INSERT INTO gambletype (GambleTypeName) VALUES (?)";
-    const READ_GAMBLE_TYPE = "SELECT * FROM gambletype WHERE idGambleType = ?";
-    const UPDATE_GAMBLE_TYPE = "UPDATE gambletype SET GambleTypeName = ? WHERE idGambleType = ?";
-    const DELETE_GAMBLE_TYPE = "DELETE FROM gambletype WHERE idGambleType = ?";
+    const READ_ALL_USER = "SELECT * FROM gambletype";
+    const CREATE_USER = "INSERT INTO gambletype (GambleTypeName) VALUES (?)";
+    const READ_USER = "SELECT * FROM gambletype WHERE idGambleType = ?";
+    const UPDATE_USER = "UPDATE gambletype SET GambleTypeName = ? WHERE idGambleType = ?";
+    const DELETE_USER = "DELETE FROM gambletype WHERE idGambleType = ?";
 
-    public function Create(GambleType $object)
+    public function Create($object)
     {
         $dbContext = DBContext::getInstance();
 
-        $dbContext->execute(self::CREATE_GAMBLE_TYPE, array(
+        $dbContext->execute(self::CREATE_USER, array(
             $object->getGambleTypeName()
         ));
     }
@@ -33,11 +33,11 @@ class GambleTypeUnitService implements IUnitService
         $dbContext = DBContext::getInstance();
 
         if (isset($id)) {
-            $objectArray = $dbContext->getOne(self::READ_GAMBLE_TYPE, $id);
+            $objectArray = $dbContext->getOne(self::READ_USER, $id);
             return $this->CreateObjectFromArray($objectArray);
 
         } else {
-            $objectsArray = $dbContext->getAll(self::READ_ALL_GAMBLE_TYPE);
+            $objectsArray = $dbContext->getAll(self::READ_ALL_USER);
 
             $resultArray = array();
 

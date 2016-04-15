@@ -3,7 +3,7 @@ namespace Service\Models;
 
 
 class User {
-    private $iduser;
+    private $idUser;
     private $name;
     private $lastname;
     private $pseudo;
@@ -13,9 +13,9 @@ class User {
     private $token;
     private $admin;
 
-    function __construct($iduser, $name, $lastname, $pseudo, $birthDate, $password, $email, $admin)
+    function __construct($idUser, $name, $lastname, $pseudo, $birthDate, $password, $email, $admin)
     {
-        $this->iduser = $iduser;
+        $this->idUser = $idUser;
         $this->name = $name;
         $this->lastname = $lastname;
         $this->pseudo = $pseudo;
@@ -28,17 +28,17 @@ class User {
     /**
      * @return mixed
      */
-    public function getIduser()
+    public function getIdUser()
     {
-        return $this->iduser;
+        return $this->idUser;
     }
 
     /**
      * @param mixed $iduser
      */
-    public function setIduser($iduser)
+    public function setIdUser($idUser)
     {
-        $this->iduser = $iduser;
+        $this->idUser = $idUser;
     }
 
     /**

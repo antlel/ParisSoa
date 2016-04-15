@@ -45,7 +45,7 @@ class DBContext
         ));
     }
 
-    public function execute($sqlRequest, $args)
+    public function execute($sqlRequest, $args = array())
     {
         $this->dbo->beginTransaction();
 
@@ -63,7 +63,7 @@ class DBContext
 
     }
 
-    public function getOne($sqlRequest, $args)
+    public function getOne($sqlRequest, $args = array())
     {
         $result = null;
         try {
@@ -80,7 +80,7 @@ class DBContext
         return $result;
     }
 
-    public function getAll($sqlRequest, $args)
+    public function getAll($sqlRequest, $args = array())
     {
         $result = null;
         try {
