@@ -34,7 +34,7 @@ class TeamUnitService implements IUnitService
 
         if (isset($id)) {
             $objectArray = $dbContext->getOne(self::READ_TEAM, $id);
-            return $this->CreateObjectFromArray($objectArray);
+            return Team::fromArray($objectArray);
 
         } else {
             $objectsArray = $dbContext->getAll(self::READ_ALL_TEAM);
@@ -42,7 +42,7 @@ class TeamUnitService implements IUnitService
             $resultArray = array();
 
             foreach ($objectsArray as $objectArray) {
-                array_push($resultArray, $this->CreateObjectFromArray($objectArray));
+                array_push($resultArray, Team::fromArray($objectArray));
             }
 
             return $resultArray;
@@ -62,8 +62,6 @@ class TeamUnitService implements IUnitService
     {
         $dbContext = DBContext::getInstance();
 
-        $dbContext->execute(self::DELETE_TEAM, array(
-            $id
-        ));
+        $dbContext->execute(self::DELETE_TEAM, array($id));
     }
 }

@@ -18,11 +18,13 @@ class LoginController extends BaseController{
             throw exception();
         }
 
-        $this->LogUser($headers["Pseudo"], $headers["Password"]);
+        return $this->LogUser($headers["Pseudo"], $headers["Password"]);
     }
 
     private function LogUser($Pseudo, $Password){
         $login = new LoginService;
-        $login->LogUser($Pseudo, $Password);
+        $user = $login->LogUser($Pseudo, $Password);
+
+        return $user;
     }
 }

@@ -34,7 +34,7 @@ class MatchUnitService implements IUnitService
 
         if (isset($id)) {
             $objectArray = $dbContext->getOne(self::READ_MATCH, $id);
-            return $this->CreateObjectFromArray($objectArray);
+            return Match::fromArray($objectArray);
 
         } else {
             $objectsArray = $dbContext->getAll(self::READ_ALL_MATCH);
@@ -42,7 +42,7 @@ class MatchUnitService implements IUnitService
             $resultArray = array();
 
             foreach ($objectsArray as $objectArray) {
-                array_push($resultArray, $this->CreateObjectFromArray($objectArray));
+                array_push($resultArray, Match::fromArray($objectArray));
             }
 
             return $resultArray;
@@ -62,8 +62,6 @@ class MatchUnitService implements IUnitService
     {
         $dbContext = DBContext::getInstance();
 
-        $dbContext->execute(self::DELETE_MATCH, array(
-            $id
-        ));
+        $dbContext->execute(self::DELETE_MATCH, array($id));
     }
 }
