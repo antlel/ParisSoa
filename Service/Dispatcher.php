@@ -34,6 +34,7 @@ class Dispatcher
 	 * sinon renvoye un statut 404
 	 */
 	public function doProcess() {
+
 		$controllerName = $this->extractControllerFormUrl($this->url);
 
 		$params = $this->extractGetParam($this->url);
