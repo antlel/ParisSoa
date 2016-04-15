@@ -2,7 +2,7 @@
 namespace Service\Models;
 
 
-class Matchs{
+class Match {
     private $idMatch;
     private $date;
     private $idTeamA;

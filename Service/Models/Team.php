@@ -2,7 +2,7 @@
 namespace Service\Models;
 
 
-class Teams{
+class Team {
     private $idTeam;
     private $TeamName;
 

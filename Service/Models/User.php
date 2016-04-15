@@ -2,7 +2,7 @@
 namespace Service\Models;
 
 
-class User{
+class User {
     private $iduser;
     private $name;
     private $lastname;

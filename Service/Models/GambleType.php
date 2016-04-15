@@ -2,7 +2,7 @@
 namespace Service\Models;
 
 
-class GambleType{
+class GambleType {
     private $idGambleType;
     private $GambleTypeName;
 

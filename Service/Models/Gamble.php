@@ -1,7 +1,7 @@
 <?php
 namespace Service\Models;
 
-class Gamble{
+class Gamble {
     private $idGamble;
     private $scoreA;
     private $scoreB;
