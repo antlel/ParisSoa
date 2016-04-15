@@ -15,5 +15,4 @@ interface IUnitService
     public function Read($id = NULL);
     public function Update($object);
     public function Delete($id);
-    public function CreateObjectFromArray($array);
 }

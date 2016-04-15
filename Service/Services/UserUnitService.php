@@ -24,7 +24,7 @@ class UserUnitService implements IUnitService
         $dbContext = DBContext::getInstance();
 
         $dbContext->execute(self::CREATE_USER, array(
-            $object->getUserName()
+            0,$object->getName(),$object->getLastname(),$object->getPseudo(),$object->getBirthDate(),$object->getPassword(),$object->getEmail(),null,0
         ));
     }
 
@@ -54,17 +54,16 @@ class UserUnitService implements IUnitService
         $dbContext = DBContext::getInstance();
 
         $dbContext->execute(self::UPDATE_USER, array(
-            $object->getIduser(),$object->getIduser(),$object->getIduser(),$object->getIduser(),$object->getIduser(),$object->getIduser(),$object->getIduser(),$object->getIduser(),$object->getIduser() ,$object->getIduser()
+            $object->getIdUser(),$object->getName(),$object->getLastname(),$object->getPseudo(),$object->getBirthDate(),$object->getPassword(),$object->getEmail(),$object->getToken(),$object->getAdmin() ,$object->getIduser()
         ));
     }
 
     public function Delete($id)
     {
-        // TODO: Implement Delete() method.
-    }
+        $dbContext = DBContext::getInstance();
 
-    private function CreateObjectFromArray($array)
-    {
-        // TODO: Implement CreateObjectFromArray() method.
+        $dbContext->execute(self::DELETE_USER, array(
+            $id
+        ));
     }
 }
