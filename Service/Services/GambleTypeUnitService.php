@@ -8,25 +8,59 @@
 
 namespace Service\Services;
 
+use Service\Models\GambleType;
+use Service\DataAccess\DBContext;
 
-class GambleTypeUnitService implements IUnitService{
-    public function Create()
+class GambleTypeUnitService implements IUnitService
+{
+    const READ_ALL_GAMBLE_TYPE = "SELECT * FROM gambletype";
+    const CREATE_GAMBLE_TYPE = "INSERT INTO gambletype (GambleTypeName) VALUES (?)";
+    const READ_GAMBLE_TYPE = "SELECT * FROM gambletype WHERE idGambleType = ?";
+    const UPDATE_GAMBLE_TYPE = "UPDATE gambletype SET GambleTypeName = ? WHERE idGambleType = ?";
+    const DELETE_GAMBLE_TYPE = "DELETE FROM gambletype WHERE idGambleType = ?";
+
+    public function Create(GambleType $object)
     {
-        // TODO: Implement Create() method.
+        $dbContext = DBContext::getInstance();
+
+        $dbContext->execute(self::CREATE_GAMBLE_TYPE, array(
+            $object->getGambleTypeName()
+        ));
     }
 
-    public function Read()
+    public function Read($id = NULL)
     {
-        // TODO: Implement Read() method.
+        $dbContext = DBContext::getInstance();
+
+        if (isset($id)) {
+            $objectArray = $dbContext->getOne(self::READ_GAMBLE_TYPE, $id);
+            return $this->CreateObjectFromArray($objectArray);
+
+        } else {
+            $objectsArray = $dbContext->getAll(self::READ_ALL_GAMBLE_TYPE);
+
+            $resultArray = array();
+
+            foreach ($objectsArray as $objectArray) {
+                array_push($resultArray, $this->CreateObjectFromArray($objectArray));
+            }
+
+            return $resultArray;
+        }
     }
 
-    public function Update()
+    public function Update($object)
     {
         // TODO: Implement Update() method.
     }
 
-    public function Delete()
+    public function Delete($id)
     {
         // TODO: Implement Delete() method.
+    }
+
+    private function CreateObjectFromArray($array)
+    {
+        // TODO: Implement CreateObjectFromArray() method.
     }
 }
