@@ -16,7 +16,7 @@ class UserUnitService implements IUnitService
     const READ_ALL_USER = "SELECT * FROM user";
     const CREATE_USER = "INSERT INTO user (idUser, name, lastname, pseudo, birthDate, password, email, token, admin) VALUES (?)";
     const READ_USER = "SELECT * FROM user WHERE idUser = ?";
-    const UPDATE_USER = "UPDATE user SET idUser = ? , name = ?, lastname = ?, pseudo = ?, birthDate = ?, password = ?, email = ?, token = ?, admin = ? WHERE idUser = ?";
+    const UPDATE_USER = "UPDATE user SET name = ?, lastname = ?, pseudo = ?, birthDate = ?, password = ?, email = ?, token = ?, admin = ? WHERE idUser = ?";
     const DELETE_USER = "DELETE FROM user WHERE idUser = ?";
 
     public function Create($object)
@@ -54,7 +54,7 @@ class UserUnitService implements IUnitService
         $dbContext = DBContext::getInstance();
 
         $dbContext->execute(self::UPDATE_USER, array(
-            $object->getIdUser(),$object->getName(),$object->getLastname(),$object->getPseudo(),$object->getBirthDate(),$object->getPassword(),$object->getEmail(),$object->getToken(),$object->getAdmin() ,$object->getIduser()
+            $object->getName(),$object->getLastname(),$object->getPseudo(),$object->getBirthDate(),$object->getPassword(),$object->getEmail(),$object->getToken(),$object->getAdmin() ,$object->getIduser()
         ));
     }
 
