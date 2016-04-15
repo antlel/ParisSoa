@@ -3,10 +3,7 @@ namespace Service\Models;
 
 use Service\Common\ArraySerializable;
 
-class User implements ArraySerializable 
-
-
-{
+class User implements ArraySerializable, \JsonSerializable {
     private $idUser;
     private $name;
     private $lastname;
@@ -33,6 +30,7 @@ class User implements ArraySerializable
     {
         $entity = new User();
 
+
         if (isset($array["idUser"]))
         {
             $entity->idUser = (int)$array["idUser"];
@@ -55,7 +53,7 @@ class User implements ArraySerializable
 
         if (isset($array["birthDate"]))
         {
-            $entity->birthDate = new DateTime($array["birthDate"]);
+            $entity->birthDate = new \DateTime($array["birthDate"]);
         }
 
         if (isset($array["password"]))
@@ -94,6 +92,11 @@ class User implements ArraySerializable
             "token" => $this->token,
             "admin" => $this->admin
         );
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 
     /**

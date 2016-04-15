@@ -28,8 +28,8 @@ class DBContext
     private function __construct()
     {
         try {
-            $this->dbo = new DBO($this->getConnectionString(), self::DATABASE_USERNAME, self::DATABASE_PASSWORD);
-        } catch (PDOException $e) {
+            $this->dbo = new \PDO($this->getConnectionString(), self::DATABASE_USERNAME, self::DATABASE_PASSWORD);
+        } catch (\PDOException $e) {
             throw $e;
         }
 
@@ -37,12 +37,12 @@ class DBContext
 
     private function getConnectionString()
     {
-        return vsprintf("/%s:host=%s;port=%s;dbname=%s;", array(
+        $connectionString = vsprintf("%s:host=%s;port=%s;dbname=%s;", array(
             self::DATABASE_DRIVER,
             self::DATABASE_ADDRESS,
             self::DATABASE_PORT,
-            self::DATABASE_NAME
-        ));
+            self::DATABASE_NAME));
+         return $connectionString;
     }
 
     public function execute($sqlRequest, $args = array())
@@ -53,7 +53,7 @@ class DBContext
             $statementHandler =  $this->dbo->prepare($sqlRequest);
             $statementHandler->execute($args);
 
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             $this->dbo->rollBack();
             throw $e;
 
@@ -70,9 +70,9 @@ class DBContext
             $statementHandler =  $this->dbo->prepare($sqlRequest);
             $statementHandler->execute($args);
 
-            $result = $statementHandler->fetch(PDO::FETCH_ASSOC);
+            $result = $statementHandler->fetch(\PDO::FETCH_ASSOC);
 
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             throw $e;
 
         }
@@ -87,9 +87,9 @@ class DBContext
             $statementHandler =  $this->dbo->prepare($sqlRequest);
             $statementHandler->execute($args);
 
-            $result = $statementHandler->fetchAll(PDO::FETCH_ASSOC);
+            $result = $statementHandler->fetchAll(\PDO::FETCH_ASSOC);
 
-        } catch (PDOException $e) {
+        } catch (\PDOException $e) {
             throw $e;
 
         }

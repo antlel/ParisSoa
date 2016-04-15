@@ -3,7 +3,7 @@ namespace Service\Models;
 
 use Service\Common\ArraySerializable;
 
-class Match implements ArraySerializable {
+class Match implements ArraySerializable, \JsonSerializable {
     private $idMatch;
     private $date;
     private $idTeamA;
@@ -30,7 +30,7 @@ class Match implements ArraySerializable {
 
         if (isset($array["date"]))
         {
-            $entity->date = new DateTime($array["date"]);
+            $entity->date = new \DateTime($array["date"]);
         }
 
         if (isset($array["idTeamA"]))
@@ -54,6 +54,11 @@ class Match implements ArraySerializable {
             "idTeamA" => $this->idTeamA,
             "idTeamB" => $this->idTeamB
         );
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 
     /**

@@ -3,7 +3,7 @@ namespace Service\Models;
 
 use Service\Common\ArraySerializable;
 
-class GambleType implements ArraySerializable {
+class GambleType implements ArraySerializable, \JsonSerializable {
     private $idGambleType;
     private $GambleTypeName;
 
@@ -38,6 +38,10 @@ class GambleType implements ArraySerializable {
         );
     }
 
+    public function jsonSerialize()
+    {
+        return $this->toArray();
+    }
 
     /**
      * @return mixed

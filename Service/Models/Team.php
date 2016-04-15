@@ -3,7 +3,7 @@ namespace Service\Models;
 
 use Service\Common\ArraySerializable;
 
-class Team implements ArraySerializable 
+class Team implements ArraySerializable, \JsonSerializable
 {
     private $idTeam;
     private $TeamName;
@@ -37,6 +37,11 @@ class Team implements ArraySerializable
             "idTeam" => $this->idTeam,
             "TeamName" => $this->TeamName
         );
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 
     /**

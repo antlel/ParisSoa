@@ -3,7 +3,7 @@ namespace Service\Models;
 
 use Service\Common\ArraySerializable;
 
-class Gamble implements ArraySerializable {
+class Gamble implements ArraySerializable, \JsonSerializable {
     private $idGamble;
     private $scoreA;
     private $scoreB;
@@ -44,7 +44,7 @@ class Gamble implements ArraySerializable {
 
         if (isset($array["date"]))
         {
-            $entity->date = new DateTime($array["date"]);
+            $entity->date = new \DateTime($array["date"]);
         }
 
         if (isset($array["idUser"]))
@@ -76,6 +76,11 @@ class Gamble implements ArraySerializable {
             "idMatch" => $this->idMatch,
             "idGambleType" => $this->idGambleType
         );
+    }
+
+    public function jsonSerialize()
+    {
+        return $this->toArray();
     }
 
     /**
