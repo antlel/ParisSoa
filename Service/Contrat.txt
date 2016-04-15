@@ -1,6 +1,3 @@
-Dans les requêtes POST (créer) et PUT (modifier), mettre des objets JSON dans la requête derrière la clé "Payload"
-Dans les responses GET, le resultat est derrière la clé "Payload" sous forme de JSON, qui contient une entité ou un tableau d'entités
-
 LoginService
     GET /login/ : LogUser(username, password)
         returns : {User}

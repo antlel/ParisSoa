@@ -11,13 +11,13 @@ use Service\Services\LoginService;
 
 class LoginController extends BaseController{
 
-    public function GET($params = NULL)
+    public function GET($params = array())
     {
-        $headers = getallheaders();
-        if(!isset($headers["pseudo"]) || !isset($headers["password"])){
+        if(!isset($params["pseudo"]) || !isset($params["password"])){
             throw new \Exception("error");
         }
-        $result =  $this->LogUser($headers["pseudo"], $headers["password"]);
+        
+        $result = $this->LogUser($params["pseudo"], $params["password"]);
         $this->response($result, 200);
     }
 

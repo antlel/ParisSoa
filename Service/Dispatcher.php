@@ -34,7 +34,7 @@ class Dispatcher
 	 * sinon renvoye un statut 404
 	 */
 	public function doProcess() {
-		$controllerName = $this->extractControllerFormUrl($this->url);
+		$controllerName = $this->extractControllerFromUrl($this->url);
 
 		$params = $this->extractGetParam($this->url);
 
@@ -53,12 +53,14 @@ class Dispatcher
 	 * @param string $url
 	 * @return le controlleur
 	 */
-	private function extractControllerFormUrl($url){
+	private function extractControllerFromUrl($url){
 		$result = explode("/", $url);
-		if(isset($result[4]))
+
+
+		if(isset($result[3]))
 		{
-			return $result[4];
-		}else{
+			return $result[3];
+		} else {
 			return null;
 		}
 	}
@@ -71,8 +73,8 @@ class Dispatcher
 	private function extractGetParam($url){
 		$explode = explode("/", $url);
 
-		if(count($explode) >= 6 && !defined($explode[5])) {
-			$result = array_splice($explode, 5, count($explode));
+		if(count($explode) >= 5) {
+			$result = array_splice($explode, 4, count($explode));
 			return $result;
 		} else {
 			return null;
@@ -94,8 +96,7 @@ class Dispatcher
 	 * @param string $controller
 	 * @return string Nom du controller
 	 */
-    private function getControllerName($controller)
-    {
+    private function getControllerName($controller){
      	return self::CONTROLLER_NAMESPACE_PREFIX . '\\' . $controller . self::CONTROLLER_SUFFIX;
     }
 
@@ -110,6 +111,8 @@ class Dispatcher
 	private function callController($controller, $params = NULL){
 		$controllerName = $this->getControllerName($controller);
 		$controller = new $controllerName();
+
+		$params = array_merge(getallheaders(), $params);
 
 		if ($params != NULL || count($params) > 0){
 			$controller->{$this->method}($params);
