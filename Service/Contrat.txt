@@ -2,21 +2,36 @@ Dans les requêtes POST (créer) et PUT (modifier), mettre des objets JSON dans 
 Dans les responses GET, le resultat est derrière la clé "Payload" sous forme de JSON, qui contient une entité ou un tableau d'entités
 
 LoginService
-    GET /login/{username}/{password} : LogUser(username, password)
+    GET /login/ : LogUser(username, password)
+        returns : {Token}
 
 RegisterService
     POST /register/ : RegisterUser(user)
+        returns : nothing
 
 MatchService
     GET /match/ : GetAllMatch()
+        returns : [{Match}]
+
     POST /match/ : CreateMatch(match)
+        returns : Match.id
+
     GET /match/{id} : GetMatch(id)
+        returns : {Match}
+
     PUT /match/{id} : Editmatch(match)
+        returns : nothing
+
     DELETE /match/{id} : DeleteMatch(id)
+        returns : nothing
 
 GambleService
     POST /gamble/ : CreateGamble(match)
+        returns : nothing
 
 RankingService
     GET /ranking/ : GetAllRanking()
+        returns : [{Ranking}]
+
     GET /ranking/{matchId} : GetAllMatchRanking(matchId)
+        returns : [{Ranking}]
