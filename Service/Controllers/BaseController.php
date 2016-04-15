@@ -41,8 +41,6 @@ class BaseController implements IServiceController
 	}
 
 	public function response($string, $http){
-		$sessionService = new sessionService();
-		header("contractVersionNumber :".$sessionService->getVersion(), TRUE);
 		header('content-type: application/json; charset=utf-8');
 		switch ($http) {
 			case 200:

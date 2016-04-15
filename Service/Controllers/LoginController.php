@@ -14,11 +14,11 @@ class LoginController extends BaseController{
     public function GET($params = NULL)
     {
         $headers = getallheaders();
-        if(!isset($headers["Pseudo"]) || !isset($headers["Password"])){
-            throw exception();
+        if(!isset($headers["pseudo"]) || !isset($headers["password"])){
+            throw new \Exception("error");
         }
-
-        return $this->LogUser($headers["Pseudo"], $headers["Password"]);
+        $result =  $this->LogUser($headers["pseudo"], $headers["password"]);
+        $this->response($result, 200);
     }
 
     private function LogUser($Pseudo, $Password){

@@ -8,8 +8,8 @@ namespace Service;
  */
 class Dispatcher
 {
-    const CONTROLLER_NAMESPACE_PREFIX = 'Service\Controller';
-    const CONTROLLER_SUFFIX = 'Controllers';
+    const CONTROLLER_NAMESPACE_PREFIX = 'Service\Controllers';
+    const CONTROLLER_SUFFIX = 'Controller';
 
 
 	/**
@@ -55,9 +55,9 @@ class Dispatcher
 	 */
 	private function extractControllerFormUrl($url){
 		$result = explode("/", $url);
-		if(isset($result[1]))
+		if(isset($result[4]))
 		{
-			return $result[1];
+			return $result[4];
 		}else{
 			return null;
 		}
@@ -71,8 +71,8 @@ class Dispatcher
 	private function extractGetParam($url){
 		$explode = explode("/", $url);
 
-		if(count($explode) >= 3 && !defined($explode[2])) {
-			$result = array_splice($explode, 2, count($explode));
+		if(count($explode) >= 6 && !defined($explode[5])) {
+			$result = array_splice($explode, 5, count($explode));
 			return $result;
 		} else {
 			return null;
