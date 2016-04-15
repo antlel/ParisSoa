@@ -11,8 +11,8 @@ namespace Service\Services;
 
 interface IUnitService
 {
-    public function Create();
-    public function Read();
-    public function Update();
-    public function Delete();
+    public function Create($object);
+    public function Read($id = NULL);
+    public function Update($object);
+    public function Delete($id);
 }
