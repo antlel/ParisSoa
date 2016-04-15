@@ -224,7 +224,7 @@ class User
      */
     public function isAdmin()
     {
-        return $this->admin == 1;
+        return $this->admin > 0;
     }
 
     /**

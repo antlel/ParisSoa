@@ -16,7 +16,7 @@ class WebService
 	public static function loginUser($username, $password)
 	{
 		$result = self::send(self::TYPE_POST, self::SERVICE_LOGIN, [
-			'username' => $username,
+			'pseudo' => $username,
 			'password' => $password,
 		]);
 
