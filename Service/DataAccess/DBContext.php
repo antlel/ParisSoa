@@ -7,10 +7,10 @@ namespace Service\DataAccess;
 class DBContext
 {
     const DATABASE_DRIVER = "mysql";
-    const DATABASE_ADDRESS = "";
-    const DATABASE_PORT = "";
-    const DATABASE_NAME = "";
-    const DATABASE_USERNAME = "";
+    const DATABASE_ADDRESS = "127.0.0.1";
+    const DATABASE_PORT = "3306";
+    const DATABASE_NAME = "euro2016";
+    const DATABASE_USERNAME = "root";
     const DATABASE_PASSWORD = "";
 
 
