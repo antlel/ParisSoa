@@ -1,15 +1,42 @@
 <?php
 namespace Service\Models;
 
+use Service\Common\ArraySerializable;
 
-class Team {
+class Team implements ArraySerializable 
+{
     private $idTeam;
     private $TeamName;
 
-    function __construct($idTeam, $TeamName)
+    public function __construct($idTeam = NULL, $TeamName = NULL)
     {
         $this->idTeam = $idTeam;
         $this->TeamName = $TeamName;
+    }
+
+    public static function fromArray($array)
+    {
+        $entity = new Team();
+
+        if (isset($array["idTeam"]))
+        {
+            $entity->idTeam = (int)$array["idTeam"];
+        }
+
+        if (isset($array["TeamName"]))
+        {
+            $entity->TeamName = $array["TeamName"];
+        }
+
+        return $entity;
+    }
+
+    public function toArray()
+    {
+        return array(
+            "idTeam" => $this->idTeam,
+            "TeamName" => $this->TeamName
+        );
     }
 
     /**

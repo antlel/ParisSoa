@@ -1,8 +1,12 @@
 <?php
 namespace Service\Models;
 
+use Service\Common\ArraySerializable;
 
-class User {
+class User implements ArraySerializable 
+
+
+{
     private $idUser;
     private $name;
     private $lastname;
@@ -13,7 +17,7 @@ class User {
     private $token;
     private $admin;
 
-    function __construct($idUser, $name, $lastname, $pseudo, $birthDate, $password, $email, $admin)
+    function __construct($idUser = NULL, $name = NULL, $lastname = NULL, $pseudo = NULL, $birthDate = NULL, $password = NULL, $email = NULL, $admin = NULL)
     {
         $this->idUser = $idUser;
         $this->name = $name;
@@ -23,6 +27,67 @@ class User {
         $this->password = $password;
         $this->email = $email;
         $this->admin = $admin;
+    }
+
+    public static function fromArray($array)
+    {
+        $entity = new User();
+
+        if (isset($array["idUser"]))
+        {
+            $entity->idUser = (int)$array["idUser"];
+        }
+
+        if (isset($array["name"]))
+        {
+            $entity->name = $array["name"];
+        }
+
+        if (isset($array["lastname"]))
+        {
+            $entity->lastname = $array["lastname"];
+        }
+
+        if (isset($array["pseudo"]))
+        {
+            $entity->pseudo = $array["pseudo"];
+        }
+
+        if (isset($array["birthDate"]))
+        {
+            $entity->birthDate = new DateTime($array["birthDate"]-;
+        }
+
+        if (isset($array["password"]))
+        {
+            $entity->password = $array["password"];
+        }
+
+        if (isset($array["email"]))
+        {
+            $entity->email = $array["email"];
+        }
+
+        if (isset($array["admin"]))
+        {
+            $entity->admin = (int)$array["admin"];
+        }
+
+        return $entity;
+    }
+
+    public function toArray()
+    {
+        return array(
+            "idUser" => $this->idUser,
+            "name" => $this->name,
+            "lastname" => $this->lastname,
+            "pseudo" => $this->pseudo,
+            "birthDate" => $this->birthDate,
+            "password" => $this->password,
+            "email" => $this->email,
+            "admin" => $this->admin
+        );
     }
 
     /**
