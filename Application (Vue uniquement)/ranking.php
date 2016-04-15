@@ -1,8 +1,7 @@
-<?php require('php/check_login.php'); ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Euro 2016 - Liste des matchs disponibles</title>
+		<title>Euro 2016 - Classement des joueurs</title>
 		<meta charset="utf-8"/>
 		<link rel="stylesheet" href="css/main.css"/>
 		<link rel="stylesheet" href="css/user.css"/>
@@ -18,41 +17,39 @@
 
 		<div class="container vertical-offset-50">
 			<div class="page-header">
-				<h2>Liste des matchs disponibles</h2>
+				<h2>Classement des joueurs</h2>
 			</div>
-			<?php include('templates/alerts.php') ?>
-			<p>Sélectionez un des match ci-dessous pour effectuer un pari.</p>
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<th>Date</th>
-						<th>Equipe 1</th>
-						<th>Equipe 2</th>
-						<th>Action</th>
+						<th>Rang</th>
+						<th>Prénom</th>
+						<th>Nom</th>
+						<th>Points</th>
 					</tr>
 				</thead>
-				<tbody id="availables-matchs">
+				<tbody>
 					<tr>
-						<td>14/04/2016</td>
-						<td>France</td>
-						<td>Allemagne</td>
-						<td><a href="match.php" class="btn btn-sm btn-success">Parier</button></td>
+						<td>1</td>
+						<td>Armand</td>
+						<td>SZYPURA</td>
+						<td>512</td>
 					</tr>
 					<tr>
-						<td>13/04/2016</td>
-						<td>France</td>
-						<td>Allemagne</td>
-						<td><a href="match.php" class="btn btn-sm btn-success">Parier</button></td>
+						<td>2</td>
+						<td>Armand</td>
+						<td>SZYPURA</td>
+						<td>512</td>
 					</tr>
 					<tr>
-						<td>12/04/2016</td>
-						<td>France</td>
-						<td>Allemagne</td>
-						<td><a href="match.php" class="btn btn-sm btn-success">Parier</button></td>
+						<td>3</td>
+						<td>Armand</td>
+						<td>SZYPURA</td>
+						<td>512</td>
 					</tr>
 				</tbody>
 			</table>
-
+			
 			<?php include('templates/footer.php') ?>
 		</div>
 	</body>

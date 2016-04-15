@@ -24,14 +24,14 @@
 						</div>
 						<div class="panel-body">
 							<?php include('templates/alerts.php') ?>
-							<form role="form" class="form-signin" action="php/login.php" method="POST">
+							<form role="form" class="form-signin" action="index.php">
 								<fieldset>
 									<p>Merci de saisir vos identifiants de connexion.</p>
-									<input class="form-control" placeholder="Nom d'utilisateur" name="username" type="text" autofocus="true"/>
-									<input class="form-control" placeholder="Mot de passe" name="password" type="password"/>
+									<input class="form-control" placeholder="Nom d'utilisateur" id="username" type="text" autofocus="true"/>
+									<input class="form-control" placeholder="Mot de passe" id="password" type="password"/>
 									<a href="register.php">Vous n'avez pas de compte ?</a>
 									<br></br>
-									<input class="btn btn-lg btn-primary btn-block" type="submit" value="Se connecter"/>
+									<input class="btn btn-lg btn-primary btn-block" type="submit" id="login" value="Se connecter"/>
 								</fieldset>
 							</form>
 						</div>

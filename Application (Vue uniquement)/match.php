@@ -1,4 +1,3 @@
-<?php require('php/check_login.php'); ?>
 <!DOCTYPE html>
 <html>
 	<head>

@@ -1,4 +1,3 @@
-<?php require('php/check_admin.php'); ?>
 <!DOCTYPE html>
 <html>
 	<head>

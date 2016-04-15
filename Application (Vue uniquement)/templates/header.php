@@ -14,21 +14,11 @@
 			<ul class="nav navbar-nav">
 				<li><a href="index.php">Matchs disponibles</a></li>
 				<li><a href="ranking.php">Classement</a></li>
-				<?php 
-					if ($user->isAdmin())
-						echo('<li><a href="matchs.php">Gestion des matchs</a></li>');
-				?>
+				<li><a href="matchs.php">Gestion des matchs</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
-				<li class="nav-username">
-					<?php 
-						echo($user->getName().' '.$user->getLastname().' ');
-						if($user->isAdmin())
-							echo('(Administrateur) ');
-						echo('-');
-					?>
-				</li>
-	        	<li><a href="php/logout.php">Se déconnecter</a></li>
+				<li class="nav-username">Armand SZYPURA -</li>
+	        	<li><a href="login.php">Se déconnecter</a></li>
 	        </ul>
 		</div>
 	</div>

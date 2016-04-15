@@ -1,4 +1,3 @@
-<?php require('php/check_admin.php'); ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -18,53 +17,37 @@
 
 		<div class="container vertical-offset-50">
 			<div class="page-header">
-				<h2>
-					Gestion des matchs
-					<a href="add_match.php" class="btn btn-default pull-right" aria-label="Left Align">
-						<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Ajouter
-					</a>
-				</h2>
+				<h2>Liste des matchs disponibles</h2>
 			</div>
 			<?php include('templates/alerts.php') ?>
+			<p>Sélectionez un des match ci-dessous pour effectuer un pari.</p>
 			<table class="table table-striped">
 				<thead>
 					<tr>
 						<th>Date</th>
-						<th>Equipe A</th>
-						<th>Equipe B</th>
-						<th>Statut des paris</th>
-						<th>Score A</th>
-						<th>Score B</th>
+						<th>Equipe 1</th>
+						<th>Equipe 2</th>
 						<th>Action</th>
 					</tr>
 				</thead>
-				<tbody>
+				<tbody id="availables-matchs">
 					<tr>
 						<td>14/04/2016</td>
-						<td><b>France</b></td>
-						<td><b>Allemagne</b></td>
-						<td>Ouverts</td>
-						<td>-</td>
-						<td>-</td>
-						<td><a href="update_match.php" class="btn btn-sm btn-primary">Editer</a></td>
+						<td>France</td>
+						<td>Allemagne</td>
+						<td><a href="match.php" class="btn btn-sm btn-success">Parier</button></td>
 					</tr>
 					<tr>
-						<td>14/04/2016</td>
-						<td><b>France</b></td>
-						<td><b>Allemagne</b></td>
-						<td>Ouverts</td>
-						<td>-</td>
-						<td>-</td>
-						<td><a href="update_match.php" class="btn btn-sm btn-primary">Editer</a></td>
+						<td>13/04/2016</td>
+						<td>France</td>
+						<td>Allemagne</td>
+						<td><a href="match.php" class="btn btn-sm btn-success">Parier</button></td>
 					</tr>
 					<tr>
-						<td>14/04/2016</td>
-						<td><b>France</b></td>
-						<td><b>Allemagne</b></td>
-						<td>Ouverts</td>
-						<td>-</td>
-						<td>-</td>
-						<td><a href="update_match.php" class="btn btn-sm btn-primary">Editer</a></td>
+						<td>12/04/2016</td>
+						<td>France</td>
+						<td>Allemagne</td>
+						<td><a href="match.php" class="btn btn-sm btn-success">Parier</button></td>
 					</tr>
 				</tbody>
 			</table>
