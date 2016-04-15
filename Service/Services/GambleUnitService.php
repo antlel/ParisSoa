@@ -8,10 +8,11 @@
 
 namespace Service\Services;
 
+use Service\Models\Gamble;
 
 class GambleUnitService implements IUnitService{
 
-    const READ_ALL_GAMBLE = "SELECT * FROM Gamble";
+    const READ_ALL_GAMBLE = "SELECT * FROM gamble";
     const CREATE_GAMBLE = "INSERT INTO gamble (scoreA, scoreB, date, idUser, idMatch, idGambleType) VALUES (?)";
     const READ_GAMBLE = "SELECT * FROM gamble WHERE idGambleType = ?";
     const UPDATE_GAMBLE = "UPDATE gamble SET scoreA = ?, scoreB = ?, date = ?, idUser = ?, idMatch = ?, idGambleType = ? WHERE idGamble = ?";
@@ -32,7 +33,7 @@ class GambleUnitService implements IUnitService{
 
         if (isset($id)) {
             $objectArray = $dbContext->getOne(self::READ_GAMBLE, $id);
-            return $this->CreateObjectFromArray($objectArray);
+            return Gamble::fromArray($objectArray);
 
         } else {
             $objectsArray = $dbContext->getAll(self::READ_ALL_GAMBLE);
@@ -40,7 +41,7 @@ class GambleUnitService implements IUnitService{
             $resultArray = array();
 
             foreach ($objectsArray as $objectArray) {
-                array_push($resultArray, $this->CreateObjectFromArray($objectArray));
+                array_push($resultArray, Gamble::fromArray($objectArray));
             }
 
             return $resultArray;
@@ -52,7 +53,8 @@ class GambleUnitService implements IUnitService{
         $dbContext = DBContext::getInstance();
 
         $dbContext->execute(self::UPDATE_GAMBLE, array(
-            $object->getGambleName(), $object->getIdGamble()
+            $object->getGambleName(), 
+            $object->getIdGamble()
         ));
     }
 
@@ -60,9 +62,7 @@ class GambleUnitService implements IUnitService{
     {
         $dbContext = DBContext::getInstance();
 
-        $dbContext->execute(self::DELETE_GAMBLE, array(
-            $id
-        ));
+        $dbContext->execute(self::DELETE_GAMBLE, array($id));
     }
 
 }

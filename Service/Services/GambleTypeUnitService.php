@@ -34,7 +34,7 @@ class GambleTypeUnitService implements IUnitService
 
         if (isset($id)) {
             $objectArray = $dbContext->getOne(self::READ_GAMBLE_TYPE, $id);
-            return $this->CreateObjectFromArray($objectArray);
+            return GambleType::fromArray($objectArray);
 
         } else {
             $objectsArray = $dbContext->getAll(self::READ_ALL_GAMBLE_TYPE);
@@ -42,7 +42,7 @@ class GambleTypeUnitService implements IUnitService
             $resultArray = array();
 
             foreach ($objectsArray as $objectArray) {
-                array_push($resultArray, $this->CreateObjectFromArray($objectArray));
+                array_push($resultArray, GambleType::fromArray($objectArray));
             }
 
             return $resultArray;
@@ -54,7 +54,8 @@ class GambleTypeUnitService implements IUnitService
         $dbContext = DBContext::getInstance();
 
         $dbContext->execute(self::UPDATE_GAMBLE_TYPE, array(
-            $object->getGambleTypeName(), $object->getIdGambleType()
+            $object->getGambleTypeName(), 
+            $object->getIdGambleType()
         ));
     }
 
@@ -62,8 +63,6 @@ class GambleTypeUnitService implements IUnitService
     {
         $dbContext = DBContext::getInstance();
 
-        $dbContext->execute(self::DELETE_GAMBLE_TYPE, array(
-            $id
-        ));
+        $dbContext->execute(self::DELETE_GAMBLE_TYPE, array($id));
     }
 }

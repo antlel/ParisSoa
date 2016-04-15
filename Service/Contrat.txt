@@ -3,7 +3,7 @@ Dans les responses GET, le resultat est derrière la clé "Payload" sous forme d
 
 LoginService
     GET /login/ : LogUser(username, password)
-        returns : {Token}
+        returns : {User}
 
 RegisterService
     POST /register/ : RegisterUser(user)

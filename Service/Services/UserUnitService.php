@@ -14,7 +14,7 @@ use Service\DataAccess\DBContext;
 class UserUnitService implements IUnitService
 {
     const READ_ALL_USER = "SELECT * FROM user";
-    const CREATE_USER = "INSERT INTO user (idUser, name, lastname, pseudo, birthDate, password, email, token, admin) VALUES (?)";
+    const CREATE_USER = "INSERT INTO user (name, lastname, pseudo, birthDate, password, email, token, admin) VALUES (?)";
     const READ_USER = "SELECT * FROM user WHERE idUser = ?";
     const UPDATE_USER = "UPDATE user SET name = ?, lastname = ?, pseudo = ?, birthDate = ?, password = ?, email = ?, token = ?, admin = ? WHERE idUser = ?";
     const DELETE_USER = "DELETE FROM user WHERE idUser = ?";
@@ -24,7 +24,7 @@ class UserUnitService implements IUnitService
         $dbContext = DBContext::getInstance();
 
         $dbContext->execute(self::CREATE_USER, array(
-            0,$object->getName(),$object->getLastname(),$object->getPseudo(),$object->getBirthDate(),$object->getPassword(),$object->getEmail(),null,0
+            $object->getName(),$object->getLastname(),$object->getPseudo(),$object->getBirthDate(),$object->getPassword(),$object->getEmail(),null,0
         ));
     }
 
@@ -34,7 +34,7 @@ class UserUnitService implements IUnitService
 
         if (isset($id)) {
             $objectArray = $dbContext->getOne(self::READ_USER, $id);
-            return $this->CreateObjectFromArray($objectArray);
+            return User::fromArray($objectArray);
 
         } else {
             $objectsArray = $dbContext->getAll(self::READ_ALL_USER);
@@ -42,7 +42,7 @@ class UserUnitService implements IUnitService
             $resultArray = array();
 
             foreach ($objectsArray as $objectArray) {
-                array_push($resultArray, $this->CreateObjectFromArray($objectArray));
+                array_push($resultArray, User::fromArray($objectArray));
             }
 
             return $resultArray;
@@ -54,7 +54,15 @@ class UserUnitService implements IUnitService
         $dbContext = DBContext::getInstance();
 
         $dbContext->execute(self::UPDATE_USER, array(
-            $object->getName(),$object->getLastname(),$object->getPseudo(),$object->getBirthDate(),$object->getPassword(),$object->getEmail(),$object->getToken(),$object->getAdmin() ,$object->getIduser()
+            $object->getName(),
+            $object->getLastname(),
+            $object->getPseudo(),
+            $object->getBirthDate(),
+            $object->getPassword(),
+            $object->getEmail(),
+            $object->getToken(),
+            $object->getAdmin() ,
+            $object->getIduser()
         ));
     }
 
@@ -62,8 +70,6 @@ class UserUnitService implements IUnitService
     {
         $dbContext = DBContext::getInstance();
 
-        $dbContext->execute(self::DELETE_USER, array(
-            $id
-        ));
+        $dbContext->execute(self::DELETE_USER, array($id));
     }
 }
