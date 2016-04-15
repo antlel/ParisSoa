@@ -9,7 +9,7 @@ namespace Service;
 class Dispatcher
 {
     const CONTROLLER_NAMESPACE_PREFIX = 'Service\Controller';
-    const CONTROLLER_SUFFIX = 'Controller';
+    const CONTROLLER_SUFFIX = 'Controllers';
 
 
 	/**

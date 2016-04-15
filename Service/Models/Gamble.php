@@ -1,4 +1,5 @@
 <?php
+namespace Service\Models;
 
 class Gamble{
     private $idGamble;

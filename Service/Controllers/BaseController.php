@@ -1,5 +1,5 @@
 <?php
-namespace Service\Controller;
+namespace Service\Controllers;
 
 /**
  * Classe de base des contrôleurs
@@ -36,7 +36,7 @@ class BaseController implements IServiceController
 	}
 
 	private function redirectTo404(){
-		$exception = new notImplementException(__LINE__, __FILE__, __CLASS__, __METHOD__, "erreur");
+		$exception = new notImplementException("erreur");
 		$this->response($exception->getRepresentativeObject(),404);
 	}
 

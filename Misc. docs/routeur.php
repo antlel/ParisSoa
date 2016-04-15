@@ -80,7 +80,7 @@ class routeur{
 	 * @return bool
 	 */
 	private function isControllerExiste($controller){
-		if(file_exists("controllers/".$controller."Controller.php")){
+		if(file_exists("controllers/".$controller."Controllers.php")){
 			return true;
 		}else{
 			return false;
@@ -97,8 +97,8 @@ class routeur{
 	 */
 	
 	private function callController($controller, $params=NULL){
-		include("controllers/".$controller."Controller.php");
-		$controllerName = $controller."Controller";
+		include("controllers/".$controller."Controllers.php");
+		$controllerName = $controller."Controllers";
 		$controller = new $controllerName();
 		if($params != NULL || count($params) > 0){
 			$controller->{$this->method}($params);

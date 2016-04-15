@@ -1,4 +1,6 @@
 <?php
+namespace Service\Models;
+
 
 class User{
     private $iduser;
