@@ -7,7 +7,7 @@
  */
 
 namespace Service\Controllers;
-
+use Service\Services\LoginService;
 
 class LoginController extends BaseController{
 
@@ -22,6 +22,7 @@ class LoginController extends BaseController{
     }
 
     private function LogUser($Pseudo, $Password){
-
+        $login = new LoginService;
+        $login->LogUser($Pseudo, $Password);
     }
 }

@@ -11,6 +11,6 @@ namespace Service\Services;
 
 class LoginService {
     public function LogUser($pseudo, $password){
-        
+
     }
 }
