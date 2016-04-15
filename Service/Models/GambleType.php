@@ -1,16 +1,43 @@
 <?php
 namespace Service\Models;
 
+use Service\Common\ArraySerializable;
 
-class GambleType {
+class GambleType implements ArraySerializable {
     private $idGambleType;
     private $GambleTypeName;
 
-    function __construct($idGambleType, $GambleTypeName)
+    public function __construct($idGambleType = NULL, $GambleTypeName = NULL)
     {
         $this->idGambleType = $idGambleType;
         $this->GambleTypeName = $GambleTypeName;
     }
+
+    public static function fromArray($array)
+    {
+        $entity = new GambleType();
+
+        if (isset($array["idGambleType"]))
+        {
+            $entity->idGambleType = (int)$array["idGambleType"];
+        }
+
+        if (isset($array["GambleTypeName"]))
+        {
+            $entity->GambleTypeName = $array["GambleTypeName"];
+        }
+
+        return $entity;
+    }
+
+    public function toArray()
+    {
+        return array(
+            "idGambleType" => $this->idGambleType,
+            "GambleTypeName" => $this->GambleTypeName
+        );
+    }
+
 
     /**
      * @return mixed

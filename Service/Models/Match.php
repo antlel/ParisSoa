@@ -1,8 +1,9 @@
 <?php
 namespace Service\Models;
 
+use Service\Common\ArraySerializable;
 
-class Match {
+class Match implements ArraySerializable {
     private $idMatch;
     private $date;
     private $idTeamA;
@@ -10,12 +11,49 @@ class Match {
     private $ScoreA;
     private $ScoreB;
 
-    function __construct($idMatch, $date, $idTeamA, $idTeamB)
+    public function __construct($idMatch = NULL, $date = NULL, $idTeamA = NULL, $idTeamB = NULL)
     {
         $this->idMatch = $idMatch;
         $this->date = $date;
         $this->idTeamA = $idTeamA;
         $this->idTeamB = $idTeamB;
+    }
+
+    public static function fromArray($array)
+    {
+        $entity = new Match();
+
+        if (isset($array["idMatch"]))
+        {
+            $entity->idMatch = (int)$array["idMatch"];
+        }
+
+        if (isset($array["date"]))
+        {
+            $entity->date = new DateTime($array["date"]);
+        }
+
+        if (isset($array["idTeamA"]))
+        {
+            $entity->idTeamA = (int)$array["idTeamA"];
+        }
+
+        if (isset($array["idTeamB"]))
+        {
+            $entity->idTeamB = (int)$array["idTeamB"];
+        }
+
+        return $entity;
+    }
+
+    public function toArray()
+    {
+        return array(
+            "idMatch" => $this->idMatch,
+            "date" => $this->date,
+            "idTeamA" => $this->idTeamA,
+            "idTeamB" => $this->idTeamB
+        );
     }
 
     /**

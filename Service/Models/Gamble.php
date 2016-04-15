@@ -1,7 +1,9 @@
 <?php
 namespace Service\Models;
 
-class Gamble {
+use Service\Common\ArraySerializable;
+
+class Gamble implements ArraySerializable {
     private $idGamble;
     private $scoreA;
     private $scoreB;
@@ -10,7 +12,7 @@ class Gamble {
     private $idMatch;
     private $idGambleType;
 
-    function __construct($idGamble, $scoreA, $scoreB, $date, $idUser, $idMatch, $idGambleType)
+    public function __construct($idGamble = NULL, $scoreA = NULL, $scoreB = NULL, $date = NULL, $idUser = NULL, $idMatch = NULL, $idGambleType = NULL)
     {
         $this->idGamble = $idGamble;
         $this->scoreA = $scoreA;
@@ -19,6 +21,61 @@ class Gamble {
         $this->idUser = $idUser;
         $this->idMatch = $idMatch;
         $this->idGambleType = $idGambleType;
+    }
+
+    public static function fromArray($array)
+    {
+        $entity = new Gamble();
+
+        if (isset($array["idGamble"]))
+        {
+            $entity->idGamble = (int)$array["idGamble"];
+        }
+
+        if (isset($array["scoreA"]))
+        {
+            $entity->scoreA = (int)$array["scoreA"];
+        }
+
+        if (isset($array["scoreB"]))
+        {
+            $entity->scoreB = (int)$array["scoreB"];
+        }
+
+        if (isset($array["date"]))
+        {
+            $entity->date = new DateTime($array["date"]);
+        }
+
+        if (isset($array["idUser"]))
+        {
+            $entity->idUser = (int)$array["idUser"];
+        }
+
+        if (isset($array["idMatch"]))
+        {
+            $entity->idMatch = (int)$array["idMatch"];
+        }
+
+        if (isset($array["idGambleType"]))
+        {
+            $entity->idGambleType = (int)$array["idGambleType"];
+        }
+
+        return $entity;
+    }
+
+    public function toArray()
+    {
+        return array(
+            "idGamble" => $this->idGamble,
+            "scoreA" => $this->scoreA,
+            "scoreB" => $this->scoreB,
+            "date" => $this->date,
+            "idUser" => $this->idUser,
+            "idMatch" => $this->idMatch,
+            "idGambleType" => $this->idGambleType
+        );
     }
 
     /**
