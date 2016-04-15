@@ -55,7 +55,7 @@ class User implements ArraySerializable
 
         if (isset($array["birthDate"]))
         {
-            $entity->birthDate = new DateTime($array["birthDate"]-;
+            $entity->birthDate = new DateTime($array["birthDate"]);
         }
 
         if (isset($array["password"]))
@@ -66,6 +66,11 @@ class User implements ArraySerializable
         if (isset($array["email"]))
         {
             $entity->email = $array["email"];
+        }
+
+        if (isset($array["token"]))
+        {
+            $entity->token = $array["token"];
         }
 
         if (isset($array["admin"]))
@@ -86,6 +91,7 @@ class User implements ArraySerializable
             "birthDate" => $this->birthDate,
             "password" => $this->password,
             "email" => $this->email,
+            "token" => $this->token,
             "admin" => $this->admin
         );
     }
