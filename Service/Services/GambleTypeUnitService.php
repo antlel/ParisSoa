@@ -62,7 +62,7 @@ class GambleTypeUnitService implements IUnitService
     {
         $dbContext = DBContext::getInstance();
 
-        $dbContext->execute(self::UPDATE_GAMBLE_TYPE, array(
+        $dbContext->execute(self::DELETE_GAMBLE_TYPE, array(
             $id
         ));
     }

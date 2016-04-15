@@ -8,25 +8,62 @@
 
 namespace Service\Services;
 
+use Service\Models\Match;
+use Service\DataAccess\DBContext;
 
-class MatchUnitService implements IUnitService{
-    public function Create()
+class MatchUnitService implements IUnitService
+{
+    const READ_ALL_MATCH = "SELECT * FROM match";
+    const CREATE_MATCH = "INSERT INTO match (date, idTeamA, idTeamB, scoreA, scoreB) VALUES (?)";
+    const READ_MATCH = "SELECT * FROM match WHERE idMatch = ?";
+    const UPDATE_MATCH = "UPDATE match SET date = ?, idTeamA = ?, idTeamB = ?, scoreA = ?, scoreB = ? WHERE idMatch = ?";
+    const DELETE_MATCH = "DELETE FROM match WHERE idMatch = ?";
+
+    public function Create($object)
     {
-        // TODO: Implement Create() method.
+        $dbContext = DBContext::getInstance();
+
+        $dbContext->execute(self::CREATE_MATCH, array(
+            $object->getDate(), $object->getIdTeamA(), $object->getIdTeamA(), $object->getScoreA(), $object->getScoreA()
+        ));
     }
 
-    public function Read()
+    public function Read($id = NULL)
     {
-        // TODO: Implement Read() method.
+        $dbContext = DBContext::getInstance();
+
+        if (isset($id)) {
+            $objectArray = $dbContext->getOne(self::READ_MATCH, $id);
+            return $this->CreateObjectFromArray($objectArray);
+
+        } else {
+            $objectsArray = $dbContext->getAll(self::READ_ALL_MATCH);
+
+            $resultArray = array();
+
+            foreach ($objectsArray as $objectArray) {
+                array_push($resultArray, $this->CreateObjectFromArray($objectArray));
+            }
+
+            return $resultArray;
+        }
     }
 
-    public function Update()
+    public function Update($object)
     {
-        // TODO: Implement Update() method.
+        $dbContext = DBContext::getInstance();
+
+        $dbContext->execute(self::UPDATE_MATCH, array(
+            $object->getDate(), $object->getIdTeamA(), $object->getIdTeamA(), $object->getScoreA(), $object->getScoreA(),  $object->getIdMatch()
+        ));
     }
 
-    public function Delete()
+    public function Delete($id)
     {
-        // TODO: Implement Delete() method.
+        $dbContext = DBContext::getInstance();
+
+        $dbContext->execute(self::DELETE_MATCH, array(
+            $id
+        ));
     }
 }
